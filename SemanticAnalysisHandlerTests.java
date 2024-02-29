@@ -67,5 +67,16 @@ public void handleRequestSemanticAnalysis1() throws Exception {
    	h.handleRequest(input2);
 	assertEquals(expected, h.handleRequest(input3));
 }
-  }
+   @Test
+public void handleRequestSemanticAnalysis2() throws Exception {
+	ChatHandler h = new ChatHandler();
+	String url1 = "http://localhost:4000/chat?user=onat&message=😂%20🥹!";
+	String url3 = "http://localhost:4000/semantic-analysis?user=onat";
+	URI input1 = new URI(url1);
+    	URI input3 = new URI(url3);
+	String expected = "onat: 😂 🥹! This message has a LOL vibe. This message has a awwww vibe.\n\n";
+	h.handleRequest(input1);
+	assertEquals(expected, h.handleRequest(input3));
+} 
+}
 
